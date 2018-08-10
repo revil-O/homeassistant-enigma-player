@@ -151,6 +151,12 @@ class EnigmaDevice(MediaPlayerDevice):
                 xml = self.request_call('/web/epgservicenow?sRef=' + reference)
                 soup = BeautifulSoup(xml, 'html.parser')
                 eventtitle = soup.e2eventtitle.renderContents().decode('UTF8')
+            
+            nxtEventTitle = 'N/A' 
+            if reference != 'N/A':
+                xml = self.request_call('/web/epgservicenownext?sRef=' + reference)
+                soup = BeautifulSoup(xml, 'html.parser')
+                nxtEventTitle = soup.e2eventtitle.renderContents().decode('UTF8')
 
             volume_xml = self.request_call('/web/vol')
             soup = BeautifulSoup(volume_xml, 'html.parser')
@@ -160,7 +166,7 @@ class EnigmaDevice(MediaPlayerDevice):
             self._volume = int(volcurrent) / MAX_VOLUME if volcurrent else None
             self._muted = (volmuted == 'True') if volmuted else None
 
-            self._selected_source = (servicename + ' - ' + eventtitle)
+            self._selected_source = (servicename + ' - ' + eventtitle + ' - ' + nxtEventTitle)
 
         return True
 
