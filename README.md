@@ -1,6 +1,6 @@
 homeassistant-enigma-player for vu+ satellite-boxes e.g. Duo2, SoloSE ...
 
-... HomeAssistant 0.75.x  --> copy enigma.py to ../components/media_player/enigma.py
+... HomeAssistant 0.75.x  --> copy enigma.py to /config/custom_components/media_player/enigma.py
 
 sample part of configuration.yaml
 
